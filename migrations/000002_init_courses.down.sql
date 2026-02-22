@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS subjects;
+DROP TABLE IF EXISTS curricula;
+DROP TABLE IF EXISTS courses;
+DROP TYPE IF EXISTS course_type;

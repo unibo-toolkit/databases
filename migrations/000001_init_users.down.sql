@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS refresh_tokens;
+DROP TABLE IF EXISTS oauth_providers;
+DROP TABLE IF EXISTS users;
+DROP EXTENSION IF EXISTS "pg_trgm";
+DROP EXTENSION IF EXISTS "uuid-ossp";
