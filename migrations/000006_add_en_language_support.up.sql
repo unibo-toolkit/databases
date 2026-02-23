@@ -1,18 +1,21 @@
-ALTER TABLE courses ADD COLUMN title VARCHAR(500);
+ALTER TABLE courses
+    ADD COLUMN title_it VARCHAR(500),
+    ADD COLUMN title_en VARCHAR(500);
 
-UPDATE courses SET title = title_it WHERE title_it IS NOT NULL;
-
-ALTER TABLE courses ALTER COLUMN title SET NOT NULL;
+UPDATE courses SET title_it = title WHERE title IS NOT NULL;
 
 ALTER TABLE courses
-    DROP COLUMN IF EXISTS title_it,
-    DROP COLUMN IF EXISTS title_en;
+    ALTER COLUMN title_it SET NOT NULL;
 
-DROP INDEX IF EXISTS idx_courses_title_it_trgm;
-DROP INDEX IF EXISTS idx_courses_title_en_trgm;
-CREATE INDEX idx_courses_title_trgm ON courses USING gin(title gin_trgm_ops);
+ALTER TABLE courses DROP COLUMN IF EXISTS title;
 
-DROP INDEX IF EXISTS idx_courses_timetable_updated;
+CREATE INDEX idx_courses_title_it_trgm ON courses USING gin(title_it gin_trgm_ops);
+CREATE INDEX idx_courses_title_en_trgm ON courses USING gin(title_en gin_trgm_ops);
+
+DROP INDEX IF EXISTS idx_courses_title_trgm;
+
 ALTER TABLE courses
-    DROP COLUMN IF EXISTS timetable_hash,
-    DROP COLUMN IF EXISTS timetable_updated_at;
+    ADD COLUMN IF NOT EXISTS timetable_hash VARCHAR(64),
+    ADD COLUMN IF NOT EXISTS timetable_updated_at TIMESTAMPTZ;
+
+CREATE INDEX IF NOT EXISTS idx_courses_timetable_updated ON courses(timetable_updated_at);
