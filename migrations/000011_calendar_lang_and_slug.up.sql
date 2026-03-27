@@ -1,0 +1,3 @@
+ALTER TABLE calendar_links ADD COLUMN lang VARCHAR(5) NOT NULL DEFAULT 'it';
+
+ALTER TABLE calendar_links ALTER COLUMN slug TYPE VARCHAR(32);
