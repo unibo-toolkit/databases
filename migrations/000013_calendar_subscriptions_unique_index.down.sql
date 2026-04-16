@@ -1,0 +1,1 @@
+DROP INDEX IF EXISTS uniq_calendar_subscriptions_calendar_ip_ua;
