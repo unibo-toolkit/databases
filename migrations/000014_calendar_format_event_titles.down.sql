@@ -1,0 +1,1 @@
+ALTER TABLE calendar_links DROP COLUMN format_event_titles;

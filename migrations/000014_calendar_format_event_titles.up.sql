@@ -1,0 +1,1 @@
+ALTER TABLE calendar_links ADD COLUMN format_event_titles BOOLEAN NOT NULL DEFAULT false;
