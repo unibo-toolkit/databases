@@ -1,4 +1,4 @@
-ALTER TABLE timetable_events ADD COLUMN family_hash VARCHAT(64);
+ALTER TABLE timetable_events ADD COLUMN family_hash VARCHAR(64);
 
 ALTER TABLE timetable_events DISABLE TRIGGER trg_timetable_events_updated_at;
 
